@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <OrientationMonitor onMove={onMove} />
-      <Scene size={canvasSize} offset={offset} numStars={30} />
+      <Scene size={canvasSize} offset={offset} numStars={40} />
     </div>
   );
 }

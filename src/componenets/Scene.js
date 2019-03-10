@@ -2,21 +2,39 @@ import React, { useState } from "react";
 import Star from "./Star";
 
 const Scene = props => {
+  const getRandomScreenPoint = (percent = 1) => {
+    return {
+      x: Math.random() * props.size.width * percent,
+      y: Math.random() * props.size.height * percent
+    };
+  };
+
+  const getRandomDepth = () => {
+    return Math.random() * 3 - 1.5;
+  };
+
   const [stars] = useState(() => {
-    return Array.from(Array(props.numStars)).map((item, i) => {
+    const count = 60;
+    const shape = Array.from(Array(count)).map((item, i) => {
       return {
         i: i,
-        x: (i / props.numStars) * props.size.width,
-        y: (i / props.numStars) * props.size.height,
-        depth: Math.random() * 5 - 2.5
+        x: Math.sin((count / Math.PI) * 2 * i) * 100 + props.size.width / 2,
+        y: Math.cos((count / Math.PI) * 2 * i) * 100 + props.size.height / 2,
+        depth: getRandomDepth()
       };
     });
+
+    const bg = Array.from(Array(props.numStars)).map((item, i) => {
+      return {
+        i: i + shape.length,
+        depth: getRandomDepth(),
+        ...getRandomScreenPoint()
+      };
+    });
+    return [...bg, ...shape];
   });
 
-  const [offsetOffset] = useState({
-    x: (Math.random() * props.size.width) / 3,
-    y: (Math.random() * props.size.height) / 3
-  });
+  const [offsetOffset] = useState(getRandomScreenPoint(0.1));
 
   const localOffset = {
     x: props.offset.x + offsetOffset.x,
