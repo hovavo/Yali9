@@ -17,25 +17,21 @@ const Scene = props => {
     };
   };
 
-  const getRandomDepth = () => {
-    return Math.random() * 3 - 1.5;
-  };
-
   const [stars] = useState(() => {
-    const count = 60;
+    const count = 30;
     const shape = Array.from(Array(count)).map((item, i) => {
       return {
         i: i,
         x: Math.sin((count / Math.PI) * 2 * i) * 100 + props.size.width / 2,
         y: Math.cos((count / Math.PI) * 2 * i) * 100 + props.size.height / 2,
-        depth: getRandomDepth()
+        depth: Math.random() + 0.1
       };
     });
 
-    const bg = Array.from(Array(100)).map((item, i) => {
+    const bg = Array.from(Array(120)).map((item, i) => {
       return {
         i: i + shape.length,
-        depth: getRandomDepth(),
+        depth: Math.random() + 0.1,
         ...getRandomScreenPoint(2)
       };
     });
@@ -43,8 +39,8 @@ const Scene = props => {
   });
 
   const [parallaxOffset] = useState({
-    x: Math.random() * 50,
-    y: Math.random() * 50
+    x: Math.random() * 10,
+    y: Math.random() * 10
   });
 
   const localparallax = {
