@@ -1,0 +1,53 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+body {
+  background: black;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+html,
+body,
+#root,
+.App,
+.mon,
+.scene {
+  height: 100%;
+}
+
+*[data-depth] {
+  width: 30px;
+  height: 30px;
+}
+
+.scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translate3d(0px, 0px, 0px) rotate(0.0001deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+.layer {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  position: absolute;
+  display: block;
+  left: 0px;
+  top: 0px;
+}
+
+.star {
+  width: 2px;
+  height: 2px;
+  background: white;
+  top: 50px;
+  left: 50px;
+}
