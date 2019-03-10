@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Scene from "./componenets/Scene";
-import OrientationMonitor from "./componenets/OrientationMonitor";
-import CanvasSizeMonitor from "./componenets/CanvasSizeMonitor";
+import Scene from "./components/Scene";
+import OrientationMonitor from "./components/OrientationMonitor";
+import CanvasSizeMonitor from "./components/CanvasSizeMonitor";
 import "./styles.css";
 
 function App() {
