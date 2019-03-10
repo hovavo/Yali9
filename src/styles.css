@@ -20,11 +20,6 @@ body,
   overflow: hidden;
 }
 
-*[data-depth] {
-  width: 30px;
-  height: 30px;
-}
-
 .scene {
   position: absolute;
   top: 0;
