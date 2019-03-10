@@ -17,6 +17,7 @@ body,
 .mon,
 .scene {
   height: 100%;
+  overflow: hidden;
 }
 
 *[data-depth] {
@@ -47,6 +48,7 @@ body,
 .star {
   width: 2px;
   height: 2px;
+  border-radius: 1px;
   background: white;
   top: 50px;
   left: 50px;

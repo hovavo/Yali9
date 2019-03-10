@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import Star from "./Star";
 
 const Scene = props => {
-  const getRandomScreenPoint = (percent = 1) => {
+  const getRandomScreenPoint = (range = 1) => {
+    const rangePx = {
+      x: props.size.width * range,
+      y: props.size.height * range
+    };
+    const rangeMod = {
+      x: props.size.width * ((1 - range) / 2),
+      y: props.size.height * ((1 - range) / 2)
+    };
     return {
-      x: Math.random() * props.size.width * percent,
-      y: Math.random() * props.size.height * percent
+      x: Math.random() * rangePx.x + rangeMod.x,
+      y: Math.random() * rangePx.y + rangeMod.y
     };
   };
 
@@ -24,27 +32,30 @@ const Scene = props => {
       };
     });
 
-    const bg = Array.from(Array(props.numStars)).map((item, i) => {
+    const bg = Array.from(Array(100)).map((item, i) => {
       return {
         i: i + shape.length,
         depth: getRandomDepth(),
-        ...getRandomScreenPoint()
+        ...getRandomScreenPoint(2)
       };
     });
     return [...bg, ...shape];
   });
 
-  const [offsetOffset] = useState(getRandomScreenPoint(0.1));
+  const [parallaxOffset] = useState({
+    x: Math.random() * 50,
+    y: Math.random() * 50
+  });
 
-  const localOffset = {
-    x: props.offset.x + offsetOffset.x,
-    y: props.offset.y + offsetOffset.y
+  const localparallax = {
+    x: props.parallax.x + parallaxOffset.x,
+    y: props.parallax.y + parallaxOffset.y
   };
 
   return (
     <div className="scene">
       {stars.map(star => (
-        <Star {...star} offset={localOffset} key={star.i} />
+        <Star {...star} parallax={localparallax} key={star.i} />
       ))}
     </div>
   );
