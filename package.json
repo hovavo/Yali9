@@ -8,14 +8,18 @@
     "parallax-js": "3.1.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
-    "react-scripts": "2.0.3"
+    "react-scripts": "2.0.3",
+    "svg-cleaner": "0.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@svgr/cli": "^4.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "convertShapes": "npx @svgr/cli ./shapes/ -d ./src/components/shapes"
   },
   "browserslist": [
     ">0.2%",

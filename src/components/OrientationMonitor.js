@@ -2,9 +2,6 @@ import React from "react";
 import Parallax from "parallax-js";
 
 class OrientationMonitor extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.parallax = new Parallax(this.refs.root, {

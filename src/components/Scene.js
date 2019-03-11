@@ -1,60 +1,74 @@
-import React, { useState } from "react";
+import React from "react";
 import Star from "./Star";
+import Shape from "./Shape";
 
-const Scene = props => {
-  const getRandomScreenPoint = (range = 1) => {
+class Scene extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      stars: this.getBGStars(),
+      parallaxOffset: {
+        x: Math.random() * 10,
+        y: Math.random() * 10
+      }
+    }
+  }
+
+  getRandomScreenPoint = (range = 1) => {
     const rangePx = {
-      x: props.size.width * range,
-      y: props.size.height * range
+      x: this.props.size.width * range,
+      y: this.props.size.height * range
     };
     const rangeMod = {
-      x: props.size.width * ((1 - range) / 2),
-      y: props.size.height * ((1 - range) / 2)
+      x: this.props.size.width * ((1 - range) / 2),
+      y: this.props.size.height * ((1 - range) / 2)
     };
     return {
       x: Math.random() * rangePx.x + rangeMod.x,
       y: Math.random() * rangePx.y + rangeMod.y
     };
-  };
+  }
 
-  const [stars] = useState(() => {
-    const count = 30;
-    const shape = Array.from(Array(count)).map((item, i) => {
-      return {
-        i: i,
-        x: Math.sin((count / Math.PI) * 2 * i) * 100 + props.size.width / 2,
-        y: Math.cos((count / Math.PI) * 2 * i) * 100 + props.size.height / 2,
-        depth: Math.random() + 0.1
-      };
-    });
-
+  getBGStars () {
     const bg = Array.from(Array(120)).map((item, i) => {
       return {
-        i: i + shape.length,
+        i: i,
         depth: Math.random() + 0.1,
-        ...getRandomScreenPoint(2)
+        ...this.getRandomScreenPoint(2)
       };
     });
-    return [...bg, ...shape];
-  });
+    return bg;
+  }
 
-  const [parallaxOffset] = useState({
-    x: Math.random() * 10,
-    y: Math.random() * 10
-  });
+  getLocalParallax() {
+    return {
+      x: this.props.parallax.x + this.state.parallaxOffset.x,
+      y: this.props.parallax.y + this.state.parallaxOffset.y
+    }
+  }
 
-  const localparallax = {
-    x: props.parallax.x + parallaxOffset.x,
-    y: props.parallax.y + parallaxOffset.y
-  };
-
-  return (
-    <div className="scene">
-      {stars.map(star => (
-        <Star {...star} parallax={localparallax} key={star.i} />
+  onShapeDataReady = points => {
+    const countOffset = this.state.stars.length;
+    const shapeStars = points.map((point, i) => {
+      return {
+        i: i + countOffset,
+        x: point.x,
+        y: point.y,
+        depth: 1 - Math.random() * 0.5
+      }
+    })
+    this.setState({stars: [...this.state.stars, ...shapeStars]});
+  } 
+      
+  render() {
+    return (<div className="scene">
+      <Shape shape={this.props.shape} onDataReady={this.onShapeDataReady} />
+      {this.state.stars.map(star => (
+        <Star {...star} parallax={this.getLocalParallax()} key={star.i} />
       ))}
-    </div>
-  );
+    </div>)
+  }
 };
 
 export default Scene;
