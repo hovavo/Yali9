@@ -17,7 +17,8 @@ class CanvasSizeMonitor {
   static onResize = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    CanvasSizeMonitor.callback({ width, height });
+    const center = {x: width / 2, y: height / 2};
+    CanvasSizeMonitor.callback({ width, height, center });
   };
 }
 

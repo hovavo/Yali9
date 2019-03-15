@@ -20,8 +20,8 @@ class OrientationMonitor extends React.Component {
   }
 
   onMove = () => {
-    const x = this.parallax.velocityX.toFixed(this.parallax.precision) * -1;
-    const y = this.parallax.velocityY.toFixed(this.parallax.precision) * -1;
+    const x = this.parallax.velocityX.toFixed(2) * -1;
+    const y = this.parallax.velocityY.toFixed(2) * -1;
     if (this.props.onMove) {
       this.props.onMove({ x, y });
     }

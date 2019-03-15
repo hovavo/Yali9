@@ -1,13 +1,12 @@
 import React from "react";
 
 const Star = props => {
-  const { x, y, depth, parallax } = props;
+  const { depth, parallax, isZero } = props;
+  const x = isZero ? props.x : Math.round(parallax.x / depth + props.x);
+  const y = isZero ? props.y : Math.round(parallax.y / depth + props.y);
   const style = {
-    top: y,
-    left: x,
     opacity: `${1 - depth * 0.3}`,
-    transform: `translate3d(${parallax.x / depth}px, ${parallax.y /
-      depth}px, 0px)`
+    transform: `translate3d(${ x }px, ${ y }px, 0px)`
   };
   return <div className="layer star" style={style} />;
 };

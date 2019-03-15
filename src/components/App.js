@@ -10,20 +10,17 @@ class App extends React.Component {
     this.state = {
       parallax: {
         x: 0,
-        y: 0,
-        isCenter: false
+        y: 0
       },
       canvasSize: {
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight, 
+        center: {x: window.innerWidth / 2, y: window.innerHeight / 2}
       }
     }
   }
 
   onParallax = parallax => {
-    parallax.isCenter = Boolean(
-      Math.abs(parallax.x <= 0.01) && Math.abs(parallax.y <= 0.01)
-    );
     this.setState({
       parallax
     })

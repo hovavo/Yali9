@@ -1,16 +1,24 @@
 import React from "react";
 import Star from "./Star";
 import Shape from "./Shape";
+import getDistance from "../utils/getDistacne"
 
 class Scene extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      stars: this.getBGStars(),
+      bgStars: this.getBGStars(),
+      shapeStars: [],
       parallaxOffset: {
         x: Math.random() * 10,
         y: Math.random() * 10
+      },
+      localParallax: {
+        x: NaN,
+        y: NaN,
+        fromCenter: NaN,
+        isZero: false
       }
     }
   }
@@ -25,8 +33,8 @@ class Scene extends React.Component {
       y: this.props.size.height * ((1 - range) / 2)
     };
     return {
-      x: Math.random() * rangePx.x + rangeMod.x,
-      y: Math.random() * rangePx.y + rangeMod.y
+      x: Math.round(Math.random() * rangePx.x) + rangeMod.x,
+      y: Math.round(Math.random() * rangePx.y) + rangeMod.y
     };
   }
 
@@ -34,39 +42,73 @@ class Scene extends React.Component {
     const bg = Array.from(Array(120)).map((item, i) => {
       return {
         i: i,
-        depth: Math.random() + 0.1,
+        depth: (Math.random() + 0.1).toFixed(3),
         ...this.getRandomScreenPoint(2)
       };
     });
     return bg;
   }
 
-  getLocalParallax() {
-    return {
-      x: this.props.parallax.x + this.state.parallaxOffset.x,
-      y: this.props.parallax.y + this.state.parallaxOffset.y
-    }
-  }
-
   onShapeDataReady = points => {
-    const countOffset = this.state.stars.length;
     const shapeStars = points.map((point, i) => {
       return {
-        i: i + countOffset,
+        i: i,
         x: point.x,
         y: point.y,
-        depth: 1 - Math.random() * 0.5
+        depth: (1 - Math.random() * 0.5).toFixed(3)
       }
     })
-    this.setState({stars: [...this.state.stars, ...shapeStars]});
+    this.setState({shapeStars});
   } 
+
+  static getDerivedStateFromProps(props, state) {
+
+    const getIsParallaxZero = (p, l) => {
+      const sensitivity = l ? 20 : 3;
+      const isZero = Math.abs(p.x) < sensitivity && Math.abs(p.y) < sensitivity;
+      return isZero;
+    }
+
+    const localParallax = {
+      x: props.parallax.x + state.parallaxOffset.x,
+      y: props.parallax.y + state.parallaxOffset.y
+    };
+
+    const fromCenter = getDistance(localParallax, {x: 0, y: 0});
+    
+    const wasZero = state.localParallax.isZero;
+    const isZero = getIsParallaxZero(localParallax, wasZero);
+
+    return {
+      localParallax: {
+        ...localParallax,
+        fromCenter,
+        isZero      
+      }
+    };
+  }
       
   render() {
-    return (<div className="scene">
-      <Shape shape={this.props.shape} onDataReady={this.onShapeDataReady} />
-      {this.state.stars.map(star => (
-        <Star {...star} parallax={this.getLocalParallax()} key={star.i} />
-      ))}
+    return (
+      <div className="scene">
+        {this.state.bgStars.map(star => (
+          <Star {...star} 
+            parallax={this.state.localParallax} 
+            key={star.i} />
+        ))}
+        <div className="shape-container">
+          <Shape shape={this.props.shape} 
+            onDataReady={this.onShapeDataReady}
+            isZero={this.state.localParallax.isZero}
+            blur={this.state.localParallax.fromCenter / 3}
+            className={this.state.localParallax.isZero ? "" : "hidden"} />
+          {this.state.shapeStars.map(star => (
+            <Star {...star} 
+              parallax={this.state.localParallax} 
+              isZero={this.state.localParallax.isZero}
+              key={star.i} />
+          ))}
+        </div>
     </div>)
   }
 };

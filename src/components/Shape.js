@@ -30,7 +30,16 @@ class Shape extends React.Component {
   }
 
   render() {
-    return <this.props.shape ref={this.svgRef} />
+    const style = {
+      // filter: this.props.isZero ? 
+      //   `initial` : 
+      //   `blur(${ this.props.blur + 1 }px)`
+    }
+    
+    return <this.props.shape 
+      ref={this.svgRef}
+      className={this.props.className}
+      style={style} />
   }
 }
 export default Shape;
