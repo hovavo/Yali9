@@ -12,7 +12,7 @@ class Scene extends React.Component {
       shapeStars: [],
       parallaxOffset: {
         x: Math.random() * 10,
-        y: Math.random() * 10
+        y: Math.random() * 20
       },
       localParallax: {
         x: NaN,
@@ -64,7 +64,7 @@ class Scene extends React.Component {
   static getDerivedStateFromProps(props, state) {
 
     const getIsParallaxZero = (p, l) => {
-      const sensitivity = l ? 20 : 3;
+      const sensitivity = l ? 20 : 2;
       const isZero = Math.abs(p.x) < sensitivity && Math.abs(p.y) < sensitivity;
       return isZero;
     }
@@ -100,7 +100,7 @@ class Scene extends React.Component {
           <Shape shape={this.props.shape} 
             onDataReady={this.onShapeDataReady}
             isZero={this.state.localParallax.isZero}
-            blur={this.state.localParallax.fromCenter / 3}
+            distance={this.state.localParallax.fromCenter}
             className={this.state.localParallax.isZero ? "" : "hidden"} />
           {this.state.shapeStars.map(star => (
             <Star {...star} 
