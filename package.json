@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": "http://hovavo.github.io/Yali9",
   "dependencies": {
     "parallax-js": "3.1.0",
     "react": "16.8.3",
@@ -12,11 +13,14 @@
     "svg-cleaner": "0.0.4"
   },
   "devDependencies": {
-    "@svgr/cli": "^4.1.0"
+    "@svgr/cli": "^4.1.0",
+    "gh-pages": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "convertShapes": "npx @svgr/cli ./shapes/ -d ./src/components/shapes"
