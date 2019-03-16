@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/Yali9/static/js/runtime~main.a5ced852.js"
   },
   {
-    "revision": "cb3e02c8080e5f8068b0",
-    "url": "/Yali9/static/js/main.cb3e02c8.chunk.js"
+    "revision": "139142d576350a1c0c6d",
+    "url": "/Yali9/static/js/main.139142d5.chunk.js"
   },
   {
     "revision": "114571d436fb5ad9d892",
     "url": "/Yali9/static/js/1.114571d4.chunk.js"
   },
   {
-    "revision": "cb3e02c8080e5f8068b0",
-    "url": "/Yali9/static/css/main.8feea6de.chunk.css"
+    "revision": "139142d576350a1c0c6d",
+    "url": "/Yali9/static/css/main.bb04aa51.chunk.css"
   },
   {
-    "revision": "6f808e67785ba436952a18ab56aefc71",
+    "revision": "2567cc35887f0ae0f8bbcfe09b9a34cc",
     "url": "/Yali9/index.html"
   }
 ];
