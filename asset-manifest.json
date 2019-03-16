@@ -1,13 +1,10 @@
 {
-  "main.css": "/Yali9/static/css/main.e5b050e0.chunk.css",
-  "main.js": "/Yali9/static/js/main.93f70432.chunk.js",
-  "main.js.map": "/Yali9/static/js/main.93f70432.chunk.js.map",
+  "main.css": "/Yali9/static/css/main.ab202487.chunk.css",
+  "main.js": "/Yali9/static/js/main.64787a34.chunk.js",
   "static/js/1.859b1399.chunk.js": "/Yali9/static/js/1.859b1399.chunk.js",
-  "static/js/1.859b1399.chunk.js.map": "/Yali9/static/js/1.859b1399.chunk.js.map",
   "runtime~main.js": "/Yali9/static/js/runtime~main.a5ced852.js",
-  "runtime~main.js.map": "/Yali9/static/js/runtime~main.a5ced852.js.map",
-  "static/css/main.e5b050e0.chunk.css.map": "/Yali9/static/css/main.e5b050e0.chunk.css.map",
+  "static/css/main.ab202487.chunk.css.map": "/Yali9/static/css/main.ab202487.chunk.css.map",
   "index.html": "/Yali9/index.html",
-  "precache-manifest.b95f4f2d0b51100bd36b8672c6e4fdf6.js": "/Yali9/precache-manifest.b95f4f2d0b51100bd36b8672c6e4fdf6.js",
+  "precache-manifest.fc0c84e6a5799bcece129a8c3da1647e.js": "/Yali9/precache-manifest.fc0c84e6a5799bcece129a8c3da1647e.js",
   "service-worker.js": "/Yali9/service-worker.js"
 }
