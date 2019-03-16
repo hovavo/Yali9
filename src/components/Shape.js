@@ -1,4 +1,5 @@
 import React from "react";
+import "array-flat-polyfill";
 
 class Shape extends React.Component {
 
@@ -22,7 +23,7 @@ class Shape extends React.Component {
       return Array.from(Array(numPoints)).map((point, j) => {
         return path.getPointAtLength((len / numPoints) * j);
       })
-    }).flat();
+    }).flat(3);
 
     if (this.props.onDataReady) {
       this.props.onDataReady(points);

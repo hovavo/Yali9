@@ -57,14 +57,14 @@ body,
   border-radius: 1px;
   background: white;
   margin: -1px 0 0 -1px;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
 svg {
   stroke: white;
   stroke-opacity: 0.4;
   opacity: 1;
-  transition: opacity 0.2 ease-out;
+  transition: opacity 0.1 ease-out;
   /* filter: drop-shadow(0px 0px 3px white); */
 }
 

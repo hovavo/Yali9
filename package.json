@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "homepage": "http://hovavo.github.io/Yali9",
   "dependencies": {
+    "array-flat-polyfill": "^1.0.0",
     "parallax-js": "3.1.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
