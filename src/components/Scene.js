@@ -39,11 +39,11 @@ class Scene extends React.Component {
   }
 
   getBGStars () {
-    const bg = Array.from(Array(120)).map((item, i) => {
+    const bg = Array.from(Array(80)).map((item, i) => {
       return {
         i: i,
-        depth: (Math.random() + 0.1).toFixed(3),
-        ...this.getRandomScreenPoint(2)
+        depth: (Math.random() + 0.6).toFixed(3),
+        ...this.getRandomScreenPoint(1.5)
       };
     });
     return bg;

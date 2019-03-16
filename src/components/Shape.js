@@ -31,7 +31,7 @@ class Shape extends React.Component {
 
   render() {
     const style = {
-      opacity: this.props.isZero ? "initial" : (0.5 - (this.props.distance / 100))
+      opacity: this.props.isZero ? "initial" : (0.3 - (this.props.distance / 100))
       // filter: this.props.isZero ? 
       //   `initial` : 
       //   `blur(${ this.props.blur + 1 }px)`
